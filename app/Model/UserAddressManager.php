@@ -38,7 +38,7 @@ class UserAddressManager extends DatabaseManager
             $userAddressId = $this->database->table(self::TABLE_NAME)
                 ->insert($userAddress)
                 ->getPrimary();
-            $numUpdated = 1;
+            $numUpdated = !empty($userAddressId) ? 1 : 0;
         } else {
             $userAddressId = $userAddress[self::COLUMN_ID];
             unset($userAddress[self::COLUMN_ID]);

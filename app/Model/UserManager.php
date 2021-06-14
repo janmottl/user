@@ -31,14 +31,12 @@ class UserManager extends DatabaseManager
      */
     public function saveUser(ArrayHash $user, string &$userId) : int
     {
-        $numUpdated = 0;
-
         if (empty($user[self::COLUMN_ID])) {
             unset($user[self::COLUMN_ID]);
             $userId = $this->database->table(self::TABLE_NAME)
                 ->insert($user)
                 ->getPrimary();
-            $numUpdated = 1;
+            $numUpdated = !empty($userId) ? 1 : 0;
         } else {
             $userId = $user[self::COLUMN_ID];
             unset($user[self::COLUMN_ID]);

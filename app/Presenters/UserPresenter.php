@@ -131,7 +131,7 @@ final class UserPresenter extends BasePresenter
                     $this->redrawControl(str_replace('Form', 'Snippet', $form->getName()));
                     $this->actionEdit(strval($userId));
                 } else {
-                    $this->redirect('User:Edit', $values->user_id);
+                    $this->redirect('User:Edit', $userId);
                 }
             } catch (UniqueConstraintViolationException $e) {
                 $this->flashMessage('Uživatel již existuje.', self::MSG_ERROR);
