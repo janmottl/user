@@ -20,6 +20,9 @@
         </div>
     </div>
 
+    <div class="btn-group" role="group">
+        <a href="javascript:void(0)" class="newUserAddress btn btn-sm btn-default" data-toggle="tooltip" title="Přidat novou adresu"><i class="fa fa-plus-square" aria-hidden="true"></i> Nová adresa</a>
+    </div>
     {control userAddressesDatagrid}
 {/block}
 
@@ -94,6 +97,98 @@
     </form>
 {/define}
 
+{* Dialog pro userAddress *}
+{block dialog}
+    {include parent}
+    <div class="container">
+        <div id="userAddressDialog" class="modal fade" role="dialog">
+            <div class="modal-dialog modal-lg">
+                <!-- Modal content-->
+                <div class="modal-content parentDiv" id="frm-group-userAddress-modcon">
+                    <div  class="modal-body">
+                        {snippet userAddressHeaderSnippet}
+                            <h4 id="userAddressDialog-title" class="modal-title" style="margin-top: 0px; margin-bottom: 5px; text-align: left; float: left;"></h4>
+                            <button type="button" class="close" data-dismiss="modal" style="margin-top: 0px; margin-bottom: 5px; margin-left: 10px; text-align: right; float: right; display: inline;">&times;</button>
+                            <br style="clear: both; display: block" />
+
+                            <div class="local-alerts">
+                                <div class="alert alert-danger validace-alert collapse lead" role="alert">Chyba validace</div>
+                                <div class="server-alerts" n:if="count($flashes)">
+                                    <div n:foreach="$flashes as $flash" n:class="alert, 'alert-'.$flash->type, server-alert, lead" role="alert">
+                                        <a href="javascript:void(0)" class="close alert-close pull-right" aria-label="Zavřít">&times;</a>
+                                        {$flash->message}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <ul class="nav nav-pills" id="myTabs">
+                                <li class="active"><a data-toggle="pill" href="#frm-group-userAddress">{if !$isNewAddress}Adresa{else}Nová adresa{/if}</a></li>
+                            </ul>
+                        {/snippet}
+                        <div id="tabs" class="tab-content">
+                            <div id="frm-group-userAddress" class="tab-pane fade in active">
+                                <hr class="hr_pills">
+                                <div class="btn-group zobraz-mode" role="group">
+                                    <a href="javascript:void(0)" class="edit btn btn-sm btn-primary"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Editovat</a>
+                                </div>
+                                <div class="btn-group edit-mode{if !$isNew} hidden{/if}" role="group">
+                                    <a class="btn btn-sm btn-primary saveButton" href="javascript:void(0)">
+                                        <span><i class="fa fa-floppy-o" aria-hidden="true"></i> Uložit</span>
+                                        <span class="processing"><i class="fa fa-spinner fa-pulse"></i> Ukládání...</span>
+                                    </a>
+                                    <a href="javascript:void(0)" class="storno btn btn-sm btn-default" data-dismiss="modal"><i class="fa fa-ban" aria-hidden="true"></i> Storno</a>
+                                </div>
+
+                                {snippet userAddressSnippet}
+                                    <form n:name='userAddressForm' class="form-horizontal ajax"{if $mode!='edit'} readonly="readonly"{/if}>
+                                        <div class="collapse out">
+                                            <input type="submit" name="save" class="save" value="Uložit">
+                                            {input user_address_id}
+                                            {input updated_timestamp}
+                                        </div>
+
+                                        <div class="form-group">
+                                            <div class="col-sm-3 col-xs-12 xsma">
+                                                <div class="input-group">
+                                                    {input user_adresa, class => "form-control adresa mapMarker user_"}
+                                                    {label user_adresa/}
+                                                    <span class="input-group-addon addressLocate" data-toggle="tooltip" title="" data-original-title="Najít na mapě"><i class="fa fa-map-marker" aria-hidden="true"></i></span>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-3 col-xs-12 xsma">
+                                                {input user_obec_psc, class => "form-control user_psc user_"}
+                                                {label user_obec_psc/}
+                                            </div>
+
+                                            <div class="col-sm-3 col-xs-12 xsma">
+                                                <div class="input-group">
+                                                    {input user_obec_nazev, class => "form-control user_ obec_nazev"}
+                                                    {label user_obec_nazev/}
+                                                    <span class="input-group-addon acomplIcon"><i class="fa fa-chevron-down" aria-hidden="true"></i></span>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-3 col-xs-12 xsma">
+                                                <div class="input-group">
+                                                    {input user_stat, class => "form-control stat acomplIcon", data-tooltip-stat => "addr"}
+                                                    {label user_stat/}
+                                                    <span class="input-group-addon stat-nazev-addon"></span>
+                                                    <span class="input-group-addon acomplIcon"><i class="fa fa-chevron-down" aria-hidden="true"></i></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                {/snippet}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{/block}
+
 {block scripts}
     {include parent}
     <script type="text/javascript" src="{$basePath}/www/js/{$clientVersion}jquery.inputmask.bundle.min.js"></script>
@@ -103,11 +198,11 @@
     <script src="{$basePath}/www/js/{$clientVersion}formChangeDetection.js" type="text/javascript"></script>
     <script src="{$basePath}/www/js/{$clientVersion}formValidation.js" type="text/javascript"></script>
     <script src="{$basePath}/www/js/{$clientVersion}alert.js" type="text/javascript"></script>
+    <script src="{$basePath}/www/js/{$clientVersion}userAddressForm.js" type="text/javascript"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/happy-inputs@2.1.0/src/nomodule-es5-fallback.js"></script>
     <script>
         var happy = new Happy;
-
         happy.init();
     </script>
     <script src="https://cdn.jsdelivr.net/npm/ublaboo-datagrid@6.2.13/assets/datagrid.js"></script>
@@ -120,6 +215,10 @@
 
     <script type="text/javascript">
         var reloadSnippetAutocompleteSource = {link reloadSnippet!};
+        var reloadUserAddressSource = {link reloadUserAddress!};
+        var statAutocompleteSource = {link statAutocomplete!};
+        var statValidateSource = null {*link statValidate!*};
+        var obecAutocompleteSource = {link obecAutocomplete!};
 
         // Počáteční inicializace.
         $.nette.init();

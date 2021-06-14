@@ -4,9 +4,12 @@ declare(strict_types=1);
 
 namespace App\Presenters;
 
+use App\Model\AcomplManager;
+use App\Model\UserAddressManager;
 use Nette;
 use App\Model\UserManager;
 use Nette\Application\UI\Form;
+use Nette\Application\Responses;
 use Nette\Database\UniqueConstraintViolationException;
 use Ublaboo\DataGrid\DataGrid;
 use Ublaboo\NetteDatabaseDataSource\NetteDatabaseDataSource;
@@ -16,6 +19,10 @@ final class UserPresenter extends BasePresenter
 {
     /** @var UserManager */
     private UserManager $userManager;
+    /** @var UserAddressManager */
+    private UserAddressManager $userAddressManager;
+    /** @var AcomplManager */
+    private AcomplManager $acomplManager;
 
     use MyDatagrid;
     /**
@@ -24,11 +31,16 @@ final class UserPresenter extends BasePresenter
      */
     public $db;
 
+    /** @var string $userAddressId */
+    protected string $userAddressId;
 
-    public function __construct(UserManager $userManager)
+
+    public function __construct(UserManager $userManager, UserAddressManager $userAddressManager, AcomplManager $acomplManager)
     {
         parent::__construct();
         $this->userManager = $userManager;
+        $this->acomplManager = $acomplManager;
+        $this->userAddressManager = $userAddressManager;
     }
 
     /**
@@ -47,6 +59,7 @@ final class UserPresenter extends BasePresenter
 
     public function renderEdit(string $id = null) {
         $this->template->isNew = empty($id);
+        $this->template->isNewAddress = empty($this->userAddressId);
 
         if (!$this->isAjax()) {
             if (empty($id)) {
@@ -55,14 +68,13 @@ final class UserPresenter extends BasePresenter
                 $this->mode = self::MODE_VIEW;
             }
         } else {
-            // osetreni kvuli datagridu, ktery vyvolava Ajaxove pozadavky take pri novem zaznamu
+            // osetreni kvuli datagridu, ktery vyvolava Ajaxove pozadavky
             $do = $this->getHttpRequest()->getQuery('do');
             $snippet = $this->getHttpRequest()->getQuery('snippet');
-            if (empty($id) ||
-                (!empty($do) && strstr($do, 'userAddressesDatagrid')) ||
-                (!empty($snippet) && strstr($snippet, 'searchObjednatelSnippet'))) {
+            if (empty($id) || (!empty($do) && strstr($do, 'userAddressesDatagrid'))) {
                 return;
             }
+            $this->mode = self::MODE_EDIT;
         }
 
         $this->template->mode = $this->mode;
@@ -73,7 +85,7 @@ final class UserPresenter extends BasePresenter
         // Vytvoření formuláře a definice jeho polí.
         $form = $this->formFactory->create();
 
-        $form->addHidden('user_id');
+        $form->addHidden(UserManager::COLUMN_ID);
 
         $form->addHidden(UserManager::COLUMN_UPDATED_TIMESTAMP);
 
@@ -137,7 +149,6 @@ final class UserPresenter extends BasePresenter
                 $this->flashMessage('Uživatel již existuje.', self::MSG_ERROR);
             }
         };
-
         return $form;
     }
 
@@ -206,5 +217,106 @@ final class UserPresenter extends BasePresenter
          * Localization
          */
         $grid->setTranslator($this->translatorFactory());
+    }
+
+    public function handleReloadUserAddress() {
+        //
+        //  Reloaduje snippet (jeho formular), flash a hlavicku
+        //
+        if ($this->isAjax()) {
+            $this->mode = $this->getHttpRequest()->getQuery('clicked') == "editovat" ? self::MODE_EDIT : self::MODE_VIEW;
+            $snippet = $this->getHttpRequest()->getQuery('snippet');
+            $this->userAddressId = $this->getHttpRequest()->getQuery('id');
+            $this->redrawControl($snippet);
+            $headerSnippet = $this->getHttpRequest()->getQuery('headerSnippet');
+            $this->redrawControl($headerSnippet);
+        }
+    }
+
+    public function handleStatAutocomplete() {
+        $response = $this->acomplManager->getStatyAutocomplete($this->getHttpRequest()->getQuery('term'),
+            $this->getHttpRequest()->getQuery('acceptUnknown'));
+        $this->sendResponse(new Responses\JsonResponse($response));
+    }
+
+    /*
+    public function handleStatValidate() {
+        $response = $this->acomplManager->statValidate($this->getHttpRequest()->getQuery('kod'),
+            $this->getHttpRequest()->getQuery('acceptUnknown'));
+        $this->sendResponse(new Responses\JsonResponse($response));
+    }
+    */
+
+    public function handleObecAutocomplete() {
+        $psc = str_replace(' ', '', $this->getHttpRequest()->getQuery('psc'));
+        $response = $this->acomplManager->getObceAutocomplete($psc,$this->getHttpRequest()->getQuery('obec'));
+        $this->sendResponse(new Responses\JsonResponse($response));
+    }
+
+    protected function createComponentUserAddressForm()
+    {
+        // Vytvoření formuláře a definice jeho polí.
+        $form = $this->formFactory->create();
+
+        $form->addHidden(UserAddressManager::COLUMN_ID);
+
+        $form->addHidden(UserAddressManager::COLUMN_UPDATED_TIMESTAMP);
+
+        $prefix = 'user_';
+
+        $form->addText($prefix.'adresa', 'Adresa')
+            ->addFilter(function ($value) {return str_replace(';', ',', $value);})
+            ->setRequired(false)
+            ->setHtmlAttribute('class','adresa mapMarker'.' '.$prefix);
+
+        $form->addText($prefix.'obec_psc', 'PSČ')
+            ->setRequired(false)
+            ->setHtmlAttribute('class',$prefix.'psc'.' '.$prefix);
+
+        $form->addText($prefix.'obec_nazev', 'Obec')
+            ->addFilter(function ($value) {return str_replace(';', ',', $value);})
+            ->setRequired(false)
+            ->setHtmlAttribute('class', 'obec_nazev acomplIcon'.' '.$prefix);
+
+        $form->addText($prefix.'stat', 'Stát')
+            ->setHtmlAttribute('class','stat osoba_fo osoba_po acomplIcon'.' '.$prefix)
+            ->setHtmlAttribute('data-tooltip-stat', 'addr')
+            ->setRequired(false);
+            //->addRule('App\Utilities\MyValidators::statValidator', 'Neplatný kód státu');
+
+        // Funkce se vykonaná při úspěšném odeslání formuláře a zpracuje zadané hodnoty.
+        $form->onSuccess[] = function (Nette\Forms\Form $form, Nette\Utils\ArrayHash $values) {
+            try {
+                $isNew = empty($values[UserManager::COLUMN_ID]);
+                $userId = $values[UserManager::COLUMN_ID];
+                $originalTimestamp = $values[UserManager::COLUMN_UPDATED_TIMESTAMP];
+
+                if ($this->userManager->saveUser($values, $userId) > 0) {
+                    $this->flashMessage('Uživatel byl úspěšně uložen.', self::MSG_SUCCESS);
+                } else {
+                    if ($this->userManager->timestampChanged($userId, $originalTimestamp)) {
+                        $this->flashMessage('Došlo ke konfliktu. Uživatel byl změněn jiným uživatelem. ', self::MSG_ERROR);
+                    } else {
+                        // nedošlo k žádé změně polí
+                        $this->flashMessage('Nebyla provedena žádná změna.', self::MSG_SUCCESS);
+                    }
+                }
+
+                if ($this->isAjax() && !$isNew) {
+                    $this->mode = self::MODE_VIEW;
+                    // znovu vygenerovat formular
+                    $this->removeComponent($form);
+                    $this->redrawControl('headerSnippet');
+                    // prekreslit snippet odpovidajici formulari
+                    $this->redrawControl(str_replace('Form', 'Snippet', $form->getName()));
+                    $this->actionEdit(strval($userId));
+                } else {
+                    $this->redirect('User:Edit', $userId);
+                }
+            } catch (UniqueConstraintViolationException $e) {
+                $this->flashMessage('Uživatel již existuje.', self::MSG_ERROR);
+            }
+        };
+        return $form;
     }
 }

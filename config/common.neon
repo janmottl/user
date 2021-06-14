@@ -28,3 +28,5 @@ services:
 	- App\Router\RouterFactory::createRouter
 	- App\Forms\FormFactory
 	- App\Model\UserManager
+	- App\Model\UserAddressManager
+	- App\Model\AcomplManager
