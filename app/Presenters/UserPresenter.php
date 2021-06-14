@@ -171,7 +171,7 @@ final class UserPresenter extends BasePresenter
         $grid->setDataSource($datasource);
         $grid->setColumnsHideable();
 
-        $path = __DIR__ . '/templates/Users/gridTemplate.latte';
+        $path = __DIR__ . '/templates/User/gridTemplate.latte';
         $grid->setTemplateFile($path);
 
         /**
@@ -192,6 +192,8 @@ final class UserPresenter extends BasePresenter
         $grid->addColumnText('user_stat', 'Stát')
             ->setSortable()
             ->setFilterText();
+
+        $grid->addColumnLink('manipulate', 'Akce');
 
         /**
          * Big inline editing

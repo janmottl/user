@@ -12,3 +12,8 @@ VALUES
        ('Adolf', 'Born', 'adolf.born@seznam.cz', '', '666 666 666', '741238'),
        ('Emil', 'Filla', 'emil.filla@seznam.cz', '', '666 666 666', '741238'),
        ('Luděk', 'Marold', 'ludek.marold@seznam.cz', '', '666 666 666', '741238');
+
+INSERT INTO user_address (user_id, user_adresa, user_stat, user_obec_psc, user_obec_nazev)
+VALUES
+    (1, 'U potoka', '', '64100', 'Brno'),
+    (1, 'U rybníka', '', '64100', 'Brno');
