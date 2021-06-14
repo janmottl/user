@@ -1,0 +1,17 @@
+
+cd /data/user/application/docker/php7.4
+
+sudo docker build -t 7.4-apache-image .
+
+sudo docker run --name php-7.4-apache \
+                -d --restart unless-stopped \
+                -p 8090:80 \
+                --mount type=bind,source="/data/user/application",target=/var/www/html \
+                --net my-network \
+                -e TZ=Europe/Prague \
+                7.4-apache-image:latest
+
+/* otestovat pristup */
+http://localhost:8090/www/
+
+

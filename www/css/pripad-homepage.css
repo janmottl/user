@@ -1,0 +1,119 @@
+/*!
+ * Start Bootstrap - Shop Homepage HTML Template (http://startbootstrap.com)
+ * Code licensed under the Apache License v2.0.
+ * For details, see http://www.apache.org/licenses/LICENSE-2.0.
+ */
+
+html, body {
+    height: 100%;
+}
+
+body {
+    padding-top: 50px; /* 70px Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+    width: 100%;
+    margin: 0;
+    overflow-y: overlay;
+}
+
+footer {
+    padding: 50px 0;
+}
+
+.error {
+    color: #a94442;
+    font-size: smaller;
+    font-weight: 500;
+}
+
+@media (max-width: 768px) {
+    div.navbar-collapse, div.navbar-collapse a {
+        font-size: 18px;
+        white-space: normal;
+    }
+}
+
+@media (min-width: 769px) {
+    ul#nav-pravy-dropdown {
+        margin-right: 15px;
+    }
+}
+
+label {
+    font-weight: 500;
+}
+
+h3 {
+    font-weight: 400;
+}
+
+.checkbox input[type=checkbox], .checkbox-inline {
+    height: 15px;
+    width: 15px;
+    margin-top: 3px;
+}
+
+.lead {
+    font-weight: 400;
+}
+
+.tooltip-inner {
+    padding: 8px;
+}
+
+.tooltip-nowrap-left {
+    white-space:nowrap;
+    max-width:none;
+    text-align: left;
+}
+
+ul.tooltip-ul {
+    padding-inline-start: 14px;
+    margin-top: 4px;
+    margin-bottom: 0px;
+}
+
+div.all-alerts .alert.alert-success:hover, div.local-alerts .alert.alert-success:hover {
+    box-shadow: 0 2px 8px rgba(0,0,0,.175);
+    background-color: #bef9bf;
+}
+
+div.all-alerts .alert.alert-warning:hover, div.local-alerts .alert.alert-warning:hover {
+    box-shadow: 0 2px 8px rgba(0,0,0,.175);
+    background-color: #faf0b4;;
+}
+
+div.all-alerts .alert.alert-danger:hover, div.local-alerts .alert.alert-danger:hover {
+    box-shadow: 0 2px 8px rgba(0,0,0,.175);
+    background-color: #ffbbbb;
+}
+
+a.alert-close i {
+    font-size: initial;
+    margin-left: 20px;
+}
+
+div.alert {
+    font-size: 18px;
+}
+
+div.alert-body {
+    padding: 15px 15px 0;
+    text-align: left;
+}
+
+div.alert-progress {
+    margin-top: 11px;
+    height: 4px;
+}
+
+div.alert.alert-success div.alert-progress {
+    background-color: #3c763d80;
+}
+
+div.alert.alert-warning div.alert-progress {
+    background-color: #8a6d3b80;
+}
+
+div.alert.alert-danger div.alert-progress {
+    background-color: #a94442;
+}

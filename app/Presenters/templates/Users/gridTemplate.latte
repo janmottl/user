@@ -1,0 +1,10 @@
+{extends $originalTemplate}
+
+{define col-manipulate}
+    <a href="{plink :User:Edit $item->user_id}" tabindex="-1"
+       title="Editovat uživatele"
+       data-toggle="tooltip"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+    <a href="{plink :User:Delete $item->user_id}" tabindex="-1"
+       title="Smazat uživatele"
+       data-toggle="tooltip"><i class="fa fa-trash"></i></a>
+{/define}

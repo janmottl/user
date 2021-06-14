@@ -1,0 +1,156 @@
+{define title}Uživatel{/define}
+{define title2}{/define}
+{define description}Uživatel{/define}
+
+{block header}
+{/block}
+
+{block content}
+    <ul class="nav nav-pills" id="myTabs">
+        <li class="active"><a data-toggle="pill" href="#frm-group-user">Uživatel</a></li>
+    </ul>
+
+    <div id="tabs" class="tab-content">
+        {var $shortTabName = "user"}
+        <div id="frm-group-{$shortTabName}" class="tab-pane fade in active">
+            {include tabContentHeader, shortTabName => "user", showButtons => true}
+            {snippet userSnippet}
+                {include form}
+            {/snippet}
+        </div>
+    </div>
+
+    {control userAddressesDatagrid}
+{/block}
+
+{define tabContentHeader}
+    <hr class="hr_pills">
+    {if $showButtons}
+        <div class="btn-group zobraz-mode" role="group">
+            <a href="javascript:void(0)" class="edit btn btn-sm btn-primary"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Editovat</a>
+        </div>
+        <div class="btn-group edit-mode{if !$isNew} hidden{/if}" role="group">
+            <a class="btn btn-sm btn-primary saveButton" href="javascript:void(0)">
+                <span><i class="fa fa-floppy-o" aria-hidden="true"></i> Uložit</span>
+                <span class="processing"><i class="fa fa-spinner fa-pulse"></i> Ukládání...</span>
+            </a>
+            {if !$isNew}
+                <a href="javascript:void(0)" class="storno btn btn-sm btn-default"><i class="fa fa-ban" aria-hidden="true"></i> Storno</a>
+            {else}
+                <a href="javascript:void(0)" class="storno_back btn btn-sm btn-default"><i class="fa fa-ban" aria-hidden="true"></i> Storno</a>
+            {/if}
+        </div>
+        <div class="btn-group pull-right zobraz-mode" role="group">
+            <a n:href="Users:" class="btn btn-sm btn-default"><i class="fa fa-level-up" aria-hidden="true"></i> Uživatelé</a>
+        </div>
+    {/if}
+{/define}
+
+
+{define form}
+    <form n:name='userForm' class="form-horizontal ajax"{if $mode!='edit'} readonly="readonly"{/if}>
+        <div class="collapse out">
+            <input type="submit" name="save" class="save" value="Uložit">
+            {input user_id}
+            {input updated_timestamp}
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-3 col-xs-6 xsma">
+                {input name, class => "form-control"}
+                {label name/}
+            </div>
+
+            <div class="col-sm-3 col-xs-6 xsma">
+                {input surname, class => "form-control"}
+                {label surname/}
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-3 col-xs-6 xsma">
+                {input email, class => "form-control"}
+                {label email/}
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-3 col-xs-6 xsma">
+                {input phone, class => "form-control"}
+                {label phone/}
+            </div>
+            <div class="col-sm-3 col-xs-6 xsma">
+                {input mobile, class => "form-control"}
+                {label mobile/}
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-3 col-xs-6 xsma">
+                {input password, class => "form-control"}
+                {label password/}
+            </div>
+        </div>
+    </form>
+{/define}
+
+{block scripts}
+    {include parent}
+    <script type="text/javascript" src="{$basePath}/www/js/{$clientVersion}jquery.inputmask.bundle.min.js"></script>
+
+    <!-- Vlastní JavaScript - Objednavka -->
+    <script src="{$basePath}/www/js/{$clientVersion}form.js" type="text/javascript"></script>
+    <script src="{$basePath}/www/js/{$clientVersion}formChangeDetection.js" type="text/javascript"></script>
+    <script src="{$basePath}/www/js/{$clientVersion}formValidation.js" type="text/javascript"></script>
+    <script src="{$basePath}/www/js/{$clientVersion}alert.js" type="text/javascript"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/happy-inputs@2.1.0/src/nomodule-es5-fallback.js"></script>
+    <script>
+        var happy = new Happy;
+
+        happy.init();
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/ublaboo-datagrid@6.2.13/assets/datagrid.js"></script>
+    <!-- It is recommended to include this JS file with just a few bits. It refreshes URL on non ajax request -->
+    <script src="https://cdn.jsdelivr.net/npm/ublaboo-datagrid@6.2.13/assets/datagrid-instant-url-refresh.js"></script>
+    <!-- Use this little extension for ajax spinners -->
+    <script src="https://cdn.jsdelivr.net/npm/ublaboo-datagrid@6.2.13/assets/datagrid-spinners.js"></script>
+    <!-- Include bootstrap-select.js when using FilterMultiSelect (silviomoreto.github.io/bootstrap-select) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.15/dist/js/bootstrap-select.js"></script>
+
+    <script type="text/javascript">
+        var reloadSnippetAutocompleteSource = {link reloadSnippet!};
+
+        // Počáteční inicializace.
+        $.nette.init();
+        // userViewingInit('body');
+
+        /*
+        $('div#snippet--'+'userSnippet')
+            .on('initViewing',function () {
+                userViewingInit(this);
+            })
+            .on('initEditing',function () {
+                userControlsInit(this);
+            });
+        */
+        {if !$isNew}
+            setReadOnlyMode('body');
+        {else}
+            adjustGUIEditMode('div#frm-group-user');
+            // userControlsInit('div#frm-group-user');
+        {/if}
+    </script>
+{/block}
+
+{block css}
+    {include parent}
+    <link rel="stylesheet" href="{$basePath}/www/css/{$clientVersion}labelAnimate.css" type="text/css" />
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/happy-inputs@2.0.4/src/happy.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ublaboo-datagrid@6.2.13/assets/datagrid.css">
+
+    <!-- Use this css for ajax spinners -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ublaboo-datagrid@6.2.13/assets/datagrid-spinners.css">
+{/block}
+

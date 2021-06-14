@@ -1,0 +1,8 @@
+parameters:
+    clientVersion: ""
+
+
+database:
+	dsn: 'mysql:host=mariadb;dbname=user'
+	user: user
+	password: user

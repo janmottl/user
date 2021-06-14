@@ -1,0 +1,365 @@
+
+/* bootstrap labels zarovnat doleva */
+.form-horizontal .control-label{
+	text-align:left !important;
+}
+
+label.control-label {
+	cursor: default;
+}
+
+nav#navigation {
+	box-shadow: 0px 0.2rem 0.8rem 0px rgba(0,0,0,0.8), 0px 0.4rem 0.2rem 0px rgba(0,0,0,0.16);
+	/*box-shadow: 0px 0.2rem 0.8rem 0px rgba(0,0,0,0.08), 0px 0.4rem 1.6rem 0px rgba(0,0,0,0.16); */
+	/*box-shadow: 0px 0.2rem 1rem 0px rgba(115,0,255,1), 0px 0.4rem 2.6rem 0px rgba(0,0,255,0.16);*/
+}
+
+.form-control {
+	padding-bottom: 1px;
+	padding-left: 3px;
+	padding-right: 3px;
+	font-weight: 600;
+	border-radius: 0;
+}
+
+.form-control:not([type="file"]) {
+	height: 28px;
+	padding-top: 4px;
+}
+
+select.form-control {
+	height: 28px !important;
+}
+
+.input-group-addon {
+	padding: 5px 5px;
+	border-radius: 0;
+}
+
+.displayNone {
+	display: none;
+}
+
+div.all-alerts {
+	position:fixed;
+	top: 70px;
+
+	margin-left: 0;
+	margin-right: 0;
+
+	padding-left: 0;
+	padding-right: 0;
+	z-index:1010;
+
+	text-align: center;
+	font-weight: bold;
+}
+
+div.validace-alerts  {
+	margin: 0;
+}
+
+div.validace-alert  {
+	margin: 0;
+}
+
+div.server-alerts {
+	text-align: center;
+}
+
+div.server-alerts.container {
+}
+
+div.server-alerts.danger, div.server-alerts.warning, div.server-alerts.info {
+	margin: 0;
+}
+
+div.server-alert {
+	margin: 0;
+}
+
+@media (max-width: 768px) {
+	.xsma {
+		margin-bottom: 15px!important;
+	}
+
+	div.all-alerts {
+		width: 100%;
+	}
+}
+
+/* prestaveni dialogu jquery-ui */
+.ui-dialog {
+	box-shadow: 0 6px 12px rgba(0,0,0,.175);
+	border: grey 3px!important;
+	border-style: solid!important;
+}
+
+.ui-widget-content a {
+	color: #337ab7!important;
+	margin-right: 10px;
+}
+
+/*
+	Chybova hlaseni v tabulce zalomit
+*/
+td span.error  {
+	display:block;
+	white-space: normal;
+	text-align: left;
+	line-height: 1.1;
+	margin-top: 3px;
+}
+
+/* presypaci hodiny */
+.loader {
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 9999;
+	background: url('page-loader.gif') 50% 50% no-repeat #ffffff;
+	background-size: 50px;
+	background-position-y: 47%;
+}
+
+/* Schovat submit */
+.save, .compute, .saveAndOperationSubmitted {
+	display:none;
+}
+
+.saveButton:not(.processing) span.processing, .saveButton_cenik:not(.processing) span.processing {
+	display: none;
+}
+
+.saveButton.processing span:not(.processing), .saveButton_cenik.processing span:not(.processing) {
+	display: none;
+}
+
+.btn-group {
+	padding-bottom: 15px;
+}
+
+#tabs {
+	padding-bottom: 15px;
+}
+
+.hr_pills {
+	border-top: 2px solid;
+	margin-top: 5px;
+	margin-bottom: 15px;
+}
+
+.hr_above {
+	border-top: 1px solid;
+	margin-top: 15px;
+	margin-bottom: 15px;
+	color: rgb(85, 85, 85);
+}
+
+
+/*
+ pro jquery ui autocomplete
+*/
+
+/* kvuli dialogum, aby naseptavac byl nad dialogem */
+.ui-menu.ui-autocomplete.ui-front {
+    box-shadow: 0 6px 12px rgba(0,0,0,.175);
+}
+
+/**/
+input.stat {
+	min-width: 32px!important;
+	max-width: 32px!important;
+	width: 32px!important;
+	text-align: center;
+	border-right: none;
+}
+
+.stat-nazev-addon {
+	width: 100%;
+	padding-top: 4px;
+	padding-bottom: 1px;
+	text-align: left;
+	white-space: pre-wrap;
+	border-left: none;
+}
+
+/* barva podsviceni polozky */
+.ui-state-active a,
+.ui-state-active a:link,
+.ui-state-active a:visited {
+	background: #428BCA!important;
+}
+.ui-widget-content .ui-state-active {
+	background: #428BCA!important;
+}
+
+/* velikost rozbalene nabidky */
+.ui-autocomplete {
+	max-height: 150px;
+	line-height: 1em;
+	font-size: 0.9em;
+	overflow-y: overlay; /* tim se zamezi blikani pri zobrazeni scrollbaru na konci. Win7 a starsi Chrome */
+	/* prevent horizontal scrollbar */
+	overflow-x: hidden;
+	/*	aby se nedelal se zbytecne scrollbar pri vyeru posledni polozky */
+    padding-bottom: 1px;
+}
+
+input[type="text"] {
+	text-overflow: ellipsis;
+}
+
+/* potlaceni funkcnosti v lincich a buttonech uvnitr disabled divu se zobrazovacim modem */
+/* aby se nemuselo nastavovat disabled jednotlivym likum a buttonum */
+/* a zachoval se pripadny class .disabled nebo atrubut disabled dodany ze serveru */
+
+div.zobraz-mode.disabled.dropdown > button {
+	/* Make the disabled links grayish*/
+	color: darkgrey;
+	/* And disable the pointer events */
+	pointer-events: none;
+	cursor: default;
+}
+
+div.zobraz-mode.disabled:not(.dropdown) > a {
+	/* Make the disabled links grayish*/
+	color: darkgrey;
+	/* And disable the pointer events */
+	pointer-events: none;
+	cursor: default;
+}
+
+div.zobraz-mode.disabled:not(.dropdown) > a.btn-primary {
+	color: white;
+	opacity: .65;
+}
+
+
+
+/*  addony */
+
+.input-group-addon {
+	color: #337ab7;
+	cursor: pointer;
+}
+
+.form-control[disabled], fieldset[disabled].form-control {
+	cursor: default;
+}
+
+.form-control[readonly], fieldset[readonly].form-control {
+	cursor: default;
+}
+
+
+input[readonly] ~ span.input-group-addon:not(.road):not(.mapLocate):not(.addressLocate):not(.pohrebisteLocate):not(.icSearch):not(.addon-active),
+textarea[readonly] ~ span.input-group-addon {
+	/* Make the disabled links grayish*/
+	color: darkgrey;
+	/* And disable the pointer events */
+	pointer-events: none;
+	cursor: default;
+}
+
+a.disabled:not(.btn-primary),
+span.input-group-addon.disabled {
+	/* And disable the pointer events */
+	pointer-events: none;
+	cursor: default;
+}
+
+a.disabled:not(.btn-primary):not(.btn-success),
+span.input-group-addon.disabled {
+	/* Make the disabled links grayish*/
+	color: darkgrey;
+}
+
+
+i.fa.fa-map-marker {
+	padding-left: 2px;
+	padding-right: 3px;
+}
+
+/*  reseni koexistence s tolltipem. Tool tip prida child a tim se to vzhledem k lastchild rozkmita */
+
+span.input-group-addon.road {
+	border-right-width: 2px!important;
+}
+
+span.input-group-addon.mapLocate {
+	border-left-width: 0!important;
+}
+
+span.input-group-addon.addressLocate {
+	border-left-width: 0!important;
+}
+
+span.input-group-addon.pohrebisteLocate {
+	border-left-width: 0!important;
+}
+
+span.input-group-addon.cenikInfo {
+	background: none;
+	border: none;
+	cursor: help;
+}
+
+/* */
+
+a.priloha {
+	cursor: pointer;
+}
+
+div.adresa-group {
+	border-style: solid;
+	border-color: lightgray;
+	border-width: 2px;
+	padding-top: 20px;
+	padding-left: 10px;
+	padding-right: 10px;
+	margin-bottom: 25px;
+}
+
+div.legend-adresa-group {
+	float:left;
+	padding:0 5px;
+	margin: -30px 0 0 0;
+	color: #337ab7;
+	background-color: white;
+}
+
+label.myLabel {
+	padding-top: 5px;
+	padding-bottom: 5px;
+	margin-bottom:10px;
+}
+
+.addUl
+{
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+	display: inline-block;
+}
+
+.addLi {
+	float: left;
+	margin-right: 15px;
+	margin-bottom: 15px;
+}
+
+input[data-nette-rules*="povinn"], input.cenik_kod {
+	background-color: lightyellow;
+}
+
+textarea[data-nette-rules*="povinn"] {
+	background-color: lightyellow;
+}
+
+/* datagrid */
+.datagrid {
+	padding: 0!important;
+}

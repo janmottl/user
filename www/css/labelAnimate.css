@@ -1,0 +1,103 @@
+
+/* input */
+
+input:not([type="checkbox"]) + label:not(.input-group-addon) {
+  margin: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+  top: -10px;
+  left: 20px;
+  position: absolute;
+  font-size: 12px;
+  font-weight: 500;
+  color: #337ab7;
+  background-color: white;
+  cursor: default;
+  pointer-events: none;
+  z-index: 20;
+}
+
+input.mozna_akce:not([type="checkbox"]) + label:not(.input-group-addon) {
+  background-color: #ebf8fe!important;
+}
+
+div.input-group > input:not([type="checkbox"]) + label:not(.input-group-addon) {
+  left: 5px;
+}
+
+div:not(.has-error) > input:not([type="checkbox"]) + label.focusIn:not(.input-group-addon) {
+  color: #66afe9;
+}
+
+div.has-error > input:not([type="checkbox"]) + label:not(.input-group-addon) {
+  color: maroon;
+}
+
+input[readonly="readonly"]:not([type="checkbox"])  + label:not(.input-group-addon) {
+  background-color: #eeeeee;
+}
+
+/* select */
+
+select + label {
+  margin: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+  top: -10px;
+  left: 20px;
+  position: absolute;
+  font-size: 12px;
+  font-weight: 500;
+  color: #337ab7;
+  background-color: white;
+  cursor: default;
+  pointer-events: none;
+  z-index: 20;
+}
+
+
+div:not(.has-error) > select + label.focusIn {
+  color: #66afe9;
+}
+
+div.has-error > select + label {
+  color: maroon;
+}
+
+select[readonly="readonly"] + label {
+  background-color: #eeeeee;
+}
+
+/* textarea */
+
+textarea + label {
+  margin: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+  top: -10px;
+  left: 20px;
+  position: absolute;
+  font-size: 12px;
+  font-weight: 500;
+  color: #337ab7;
+  background-color: white;
+  cursor: default;
+  pointer-events: none;
+  z-index: 20;
+}
+
+div:not(.has-error) > textarea + label.focusIn {
+  color: #66afe9;
+}
+
+div.has-error > textarea + label {
+  color: maroon;
+}
+
+textarea[readonly="readonly"] + label {
+  background-color: #eeeeee;
+}
+
+div.input-group > textarea + label:not(.input-group-addon) {
+  left: 5px;
+}
