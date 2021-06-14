@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c8061d65-a281-451d-9628-fc13d0242d25" name="Default Changelist" comment="" />
+    <list default="true" id="c8061d65-a281-451d-9628-fc13d0242d25" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/app/Model/UserInfo.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Model/UserAddressManager.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Model/UserAddressManager.php" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -116,14 +119,37 @@
       <updated>1623565710836</updated>
       <workItem from="1623565714422" duration="1624000" />
       <workItem from="1623567371067" duration="24868000" />
-      <workItem from="1623653561339" duration="3632000" />
+      <workItem from="1623653561339" duration="5691000" />
     </task>
+    <task id="LOCAL-00001" summary="zacatek">
+      <created>1623659120989</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1623659120989</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="zacatek" />
+    <option name="LAST_COMMIT_MESSAGE" value="zacatek" />
   </component>
 </project>
