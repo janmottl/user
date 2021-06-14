@@ -2,9 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c8061d65-a281-451d-9628-fc13d0242d25" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/app/Model/UserAddressManager.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Model/UserAddressManager.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Model/UserManager.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Model/UserManager.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Model/AcomplManager.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/www/js/userAddressForm.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/48234e75-40cf-4e92-8952-d8f1405e577a.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/48234e75-40cf-4e92-8952-d8f1405e577a.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Presenters/UserPresenter.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Presenters/UserPresenter.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Presenters/templates/User/edit.latte" beforeDir="false" afterPath="$PROJECT_DIR$/app/Presenters/templates/User/edit.latte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/common.neon" beforeDir="false" afterPath="$PROJECT_DIR$/config/common.neon" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,7 +73,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/app" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/Model" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -83,11 +86,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/app" />
       <recent name="$PROJECT_DIR$/app/Model" />
-      <recent name="$PROJECT_DIR$/www/css" />
-      <recent name="$PROJECT_DIR$/www" />
       <recent name="$PROJECT_DIR$/app/Presenters" />
+      <recent name="$PROJECT_DIR$/www/js" />
+      <recent name="$PROJECT_DIR$/app" />
+      <recent name="$PROJECT_DIR$/www/css" />
     </key>
   </component>
   <component name="RunManager" selected="Database Script.data_sample_user.sql">
@@ -120,7 +123,7 @@
       <updated>1623565710836</updated>
       <workItem from="1623565714422" duration="1624000" />
       <workItem from="1623567371067" duration="24868000" />
-      <workItem from="1623653561339" duration="7893000" />
+      <workItem from="1623653561339" duration="17439000" />
     </task>
     <task id="LOCAL-00001" summary="zacatek">
       <created>1623659120989</created>
@@ -143,7 +146,14 @@
       <option name="project" value="LOCAL" />
       <updated>1623660922159</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Opravy">
+      <created>1623671358523</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1623671358523</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -167,6 +177,7 @@
     <MESSAGE value="zacatek" />
     <MESSAGE value="navrh API" />
     <MESSAGE value="Adresy" />
-    <option name="LAST_COMMIT_MESSAGE" value="Adresy" />
+    <MESSAGE value="Opravy" />
+    <option name="LAST_COMMIT_MESSAGE" value="Opravy" />
   </component>
 </project>
