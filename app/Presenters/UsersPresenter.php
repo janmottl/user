@@ -6,7 +6,6 @@ namespace App\Presenters;
 
 use Nette;
 use Nette\Database\Explorer;
-use Tracy\Debugger;
 use Ublaboo\DataGrid\DataGrid;
 use Ublaboo\NetteDatabaseDataSource\NetteDatabaseDataSource;
 
