@@ -355,4 +355,11 @@ final class UserPresenter extends BasePresenter
         };
         return $form;
     }
+
+    public function handleDeleteUserAddress() {
+        if ($this->isAjax()) {
+            $this->userAddressManager->deleteUserAddress($this->getHttpRequest()->getQuery('id'));
+            $this->reloadGrid = true;
+        }
+    }
 }
