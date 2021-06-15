@@ -1,14 +1,10 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: mottl
- * Date: 6.2.17
- * Time: 8:52
- */
+
+declare(strict_types=1);
+
 
 namespace App\Model;
 
-use Nette\Utils\ArrayHash;
 
 class AcomplManager extends DatabaseManager
 {
@@ -21,7 +17,7 @@ class AcomplManager extends DatabaseManager
      * @param string $inString
      * @return string
      */
-    public static function escapeSqlApostrophe ($inString)
+    public static function escapeSqlApostrophe (string $inString) : string
     {
         return str_replace("'", "\'", $inString);
     }
@@ -75,7 +71,12 @@ class AcomplManager extends DatabaseManager
         return $result;
     }
 
-    public function statValidate($kod, $acceptUnknown)
+    /**
+     * @param string $kod
+     * @param string $acceptUnknown
+     * @return array|string[]
+     */
+    public function statValidate(string $kod, string $acceptUnknown)
     {
         $result = ['returns' => 'false', 'nazev' => ''];
         if (!empty($kod)) {

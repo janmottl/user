@@ -21,8 +21,9 @@
 		"latte/latte": "^2.9",
 		"tracy/tracy": "^2.8",
 		"ublaboo/datagrid-nette-database-data-source": "~2.0.0",
-		"ublaboo/datagrid": "^6.6.0"
-	},
+		"ublaboo/datagrid": "^6.6.0",
+      "ext-pdo": "*"
+    },
 	"require-dev": {
 		"nette/tester": "^2.3",
 		"symfony/thanks": "^1"

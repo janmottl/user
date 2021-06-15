@@ -4,17 +4,18 @@ declare(strict_types=1);
 
 namespace App\Presenters;
 
-use App\Model\AcomplManager;
-use App\Model\UserAddressManager;
+use PDOException;
 use Nette;
 use App\Model\UserManager;
 use Nette\Application\UI\Form;
 use Nette\Application\Responses;
 use Nette\Database\Explorer;
-use Nette\Database\UniqueConstraintViolationException;
-use Tracy\Debugger;
+
 use Ublaboo\DataGrid\DataGrid;
 use Ublaboo\NetteDatabaseDataSource\NetteDatabaseDataSource;
+
+use App\Model\AcomplManager;
+use App\Model\UserAddressManager;
 
 
 final class UserPresenter extends BasePresenter
@@ -29,7 +30,6 @@ final class UserPresenter extends BasePresenter
     private AcomplManager $acomplManager;
 
     use MyDatagrid;
-
     /** @var bool $reloadGrid */
     private bool $reloadGrid = false;
     /** @var string $userAddressId */
@@ -60,6 +60,9 @@ final class UserPresenter extends BasePresenter
         }
     }
 
+    /**
+     * @param string|null $id
+     */
     public function renderEdit(string $id = null) {
         $this->template->isNew = empty($id);
         $this->template->isNewAddress = empty($this->userAddressId);
@@ -90,6 +93,9 @@ final class UserPresenter extends BasePresenter
         }
     }
 
+    /**
+     * @return Form
+     */
     protected function createComponentUserForm()
     {
         // Vytvoření formuláře a definice jeho polí.
@@ -156,16 +162,18 @@ final class UserPresenter extends BasePresenter
                 } else {
                     $this->redirect('User:Edit', $userId);
                 }
-            } catch (UniqueConstraintViolationException $e) {
-                $this->flashMessage('Uživatel již existuje.', self::MSG_ERROR);
+            } catch (PDOException $e) {
+                $message = $e->getMessage();
+                $this->flashMessage($message, self::MSG_ERROR);
             }
         };
         return $form;
     }
 
-    public function actionDelete(int $id) {
-    }
-
+    /**
+     * @param $name
+     * @throws \Ublaboo\DataGrid\Exception\DataGridException
+     */
     public function createComponentUserAddressesDatagrid($name) {
         /**
          * @type DataGrid
@@ -207,31 +215,14 @@ final class UserPresenter extends BasePresenter
         $grid->addColumnLink('manipulate', 'Akce');
 
         /**
-         * Big inline editing
-         */
-
-        /**
-         * Filters
-         */
-
-        /**
-         * Actions
-         */
-
-        /**
-         * Group action
-         */
-
-        /**
-         * Columns summary
-         */
-
-        /**
          * Localization
          */
         $grid->setTranslator($this->translatorFactory());
     }
 
+    /**
+     *
+     */
     public function handleReloadUserAddress() {
         //
         //  Reloaduje snippet (jeho formular), flash a hlavicku
@@ -246,18 +237,27 @@ final class UserPresenter extends BasePresenter
         }
     }
 
+    /**
+     * @throws Nette\Application\AbortException
+     */
     public function handleStatAutocomplete() {
         $response = $this->acomplManager->getStatyAutocomplete($this->getHttpRequest()->getQuery('term'),
             $this->getHttpRequest()->getQuery('acceptUnknown'));
         $this->sendResponse(new Responses\JsonResponse($response));
     }
 
+    /**
+     * @throws Nette\Application\AbortException
+     */
     public function handleStatValidate() {
         $response = $this->acomplManager->statValidate($this->getHttpRequest()->getQuery('kod'),
             $this->getHttpRequest()->getQuery('acceptUnknown'));
         $this->sendResponse(new Responses\JsonResponse($response));
     }
 
+    /**
+     * @throws Nette\Application\AbortException
+     */
     public function handleObecAutocomplete() {
         $psc = str_replace(' ', '', $this->getHttpRequest()->getQuery('psc'));
         $response = $this->acomplManager->getObceAutocomplete($psc,$this->getHttpRequest()->getQuery('obec'));
@@ -271,6 +271,9 @@ final class UserPresenter extends BasePresenter
         return $this->userAddressStatName;
     }
 
+    /**
+     * @return Form
+     */
     protected function createComponentUserAddressForm()
     {
         // Vytvoření formuláře a definice jeho polí.
@@ -345,8 +348,9 @@ final class UserPresenter extends BasePresenter
 
                 // grid reload
                 $this->reloadGrid = true;
-            } catch (UniqueConstraintViolationException $e) {
-                $this->flashMessage('Adresa již existuje.', self::MSG_ERROR);
+            } catch (PDOException $e) {
+                $message = $e->getMessage();
+                $this->flashMessage($message, self::MSG_ERROR);
             }
         };
         return $form;
