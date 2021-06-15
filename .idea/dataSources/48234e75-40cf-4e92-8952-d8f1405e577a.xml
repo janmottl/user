@@ -940,10 +940,20 @@ user|schema||user||UPDATE|G</Grants>
       <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
       <OnUpdate>CURRENT_TIMESTAMP</OnUpdate>
     </column>
-    <key id="275" parent="242" name="PRIMARY">
+    <index id="275" parent="242" name="user_id_fk">
+      <ColNames>user_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="276" parent="242" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>user_address_id</ColNames>
       <Primary>1</Primary>
     </key>
+    <foreign-key id="277" parent="242" name="user_id_fk">
+      <ColNames>user_id</ColNames>
+      <RefTableName>user</RefTableName>
+      <RefColNames>user_id</RefColNames>
+      <OnDelete>cascade</OnDelete>
+    </foreign-key>
   </database-model>
 </dataSource>

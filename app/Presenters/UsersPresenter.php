@@ -5,19 +5,45 @@ declare(strict_types=1);
 namespace App\Presenters;
 
 use Nette;
+use Nette\Database\Explorer;
+use Tracy\Debugger;
 use Ublaboo\DataGrid\DataGrid;
 use Ublaboo\NetteDatabaseDataSource\NetteDatabaseDataSource;
+
+use App\Model\UserManager;
 
 
 final class UsersPresenter extends BasePresenter
 {
-    use MyDatagrid;
     /**
-     * @var Nette\Database\Context
-     * @inject
+     * @var UserManager
      */
-    public $database;
+    private UserManager $userManager;
 
+    use MyDatagrid;
+
+    /**
+     * @var Explorer
+     */
+    public Explorer $database;
+    /** @var bool $reloadGrid */
+    private bool $reloadGrid = false;
+
+    public function __construct(Explorer $database, UserManager $userManager)
+    {
+        parent::__construct();
+        $this->database = $database;
+        $this->userManager = $userManager;
+    }
+
+    /**
+     *
+     */
+    public function renderUsers() {
+        if ($this->reloadGrid) {
+            $this['usersDatagrid']->reload();
+        }
+    }
 
     /**
      * @throws \Ublaboo\DataGrid\Exception\DataGridException
@@ -94,5 +120,16 @@ final class UsersPresenter extends BasePresenter
          * Localization
          */
         $grid->setTranslator($this->translatorFactory());
+    }
+
+    /**
+     *
+     */
+    public function handleDeleteUser() {
+        if ($this->isAjax()) {
+            $this->userManager->deleteUser($this->getHttpRequest()->getQuery('id'));
+            $this->reloadGrid = true;
+            $this->redrawControl('usersDatagrid');
+        }
     }
 }

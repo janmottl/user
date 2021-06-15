@@ -2,10 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c8061d65-a281-451d-9628-fc13d0242d25" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/www/js/usersForm.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/48234e75-40cf-4e92-8952-d8f1405e577a.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/48234e75-40cf-4e92-8952-d8f1405e577a.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Presenters/UserPresenter.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Presenters/UserPresenter.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Presenters/templates/User/edit.latte" beforeDir="false" afterPath="$PROJECT_DIR$/app/Presenters/templates/User/edit.latte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/js/userAddressForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/www/js/userForm.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Model/UserAddressManager.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Model/UserAddressManager.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Model/UserManager.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Model/UserManager.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Presenters/UsersPresenter.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Presenters/UsersPresenter.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Presenters/templates/Users/default.latte" beforeDir="false" afterPath="$PROJECT_DIR$/app/Presenters/templates/Users/default.latte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Presenters/templates/Users/gridTemplate.latte" beforeDir="false" afterPath="$PROJECT_DIR$/app/Presenters/templates/Users/gridTemplate.latte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql/create_user.sql" beforeDir="false" afterPath="$PROJECT_DIR$/sql/create_user.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/js/userForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/www/js/userForm.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,7 +77,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/Presenters/templates/User" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/www/js" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -84,10 +90,10 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/www/js" />
       <recent name="$PROJECT_DIR$/app/Presenters/templates/User" />
       <recent name="$PROJECT_DIR$/app/Model" />
       <recent name="$PROJECT_DIR$/app/Presenters" />
-      <recent name="$PROJECT_DIR$/www/js" />
       <recent name="$PROJECT_DIR$/app" />
     </key>
   </component>
@@ -123,7 +129,7 @@
       <workItem from="1623567371067" duration="24868000" />
       <workItem from="1623653561339" duration="18212000" />
       <workItem from="1623734381939" duration="10793000" />
-      <workItem from="1623757887694" duration="5634000" />
+      <workItem from="1623757887694" duration="9376000" />
     </task>
     <task id="LOCAL-00001" summary="zacatek">
       <created>1623659120989</created>
@@ -237,7 +243,14 @@
       <option name="project" value="LOCAL" />
       <updated>1623762010904</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="Adresy">
+      <created>1623763533371</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1623763533371</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

@@ -20,14 +20,17 @@
 
 {block scripts}
     {include parent}
-    <script>
-        // var linkKontakt = {* plink ":Core:Kontakt:admin" *};
+    <script src="{$basePath}/www/js/{$clientVersion}form.js" type="text/javascript"></script>
+    <script src="{$basePath}/www/js/{$clientVersion}usersForm.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        var deleteUserSource = {link deleteUser!}
+        // Počáteční inicializace.
+        $.nette.init();
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/happy-inputs@2.1.0/src/nomodule-es5-fallback.js"></script>
     <script>
         var happy = new Happy;
-
         happy.init();
     </script>
     <script src="https://cdn.jsdelivr.net/npm/ublaboo-datagrid@6.2.13/assets/datagrid.js"></script>

@@ -15,9 +15,9 @@ class UserManager extends DatabaseManager
         COLUMN_UPDATED_TIMESTAMP = 'updated_timestamp';
     /**
      * @param string $userId
-     * @return false|ActiveRow
+     * @return null|ActiveRow
      */
-    public function getUser(string $userId) : ActiveRow
+    public function getUser(string $userId) : ?ActiveRow
     {
         return $this->database->table(self::TABLE_NAME)
             ->select('*')
