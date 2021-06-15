@@ -18,11 +18,8 @@ $(document).on( "click", ".newUserAddress", function() {
             $('[name="name"]').focus();
         });
     });
-});
-
-
-$(document).on( "click", ".editUserAddress", function() {
-    var id = $(this).closest('tr').attr('data-id');
+}).on( "click", ".editUserAddress", function() {
+    let id = $(this).closest('tr').attr('data-id');
 
     $.nette.ajax({
         url: reloadUserAddressSource,
@@ -38,9 +35,21 @@ $(document).on( "click", ".editUserAddress", function() {
         // otevre dialog
         $("#userAddressDialog").modal({backdrop: "static", keyboard: true});
         adjustGUIEditMode('div#frm-group-userAddress');
-
         setTimeout(function() {
             $('[name="name"]').focus();
         });
+    });
+}).on( "click", ".editModeUserAddress", function() {
+    let id = $(this).closest('div.tab-pane').find('input[name="user_address_id"]').val();
+    $.nette.ajax({
+        url: reloadUserAddressSource,
+        data: {
+            snippet: "userAddressSnippet",
+            headerSnippet: "userAddressHeaderSnippet",
+            clicked: "editovat",
+            parentDivId: "frm-group-userAddress-modcon",
+            adjustGUI: true,
+            id: id
+        }
     });
 });

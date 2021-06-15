@@ -314,7 +314,7 @@ final class UserPresenter extends BasePresenter
                 if ($this->userAddressManager->saveUserAddress($values, $userAddressId) > 0) {
                     $this->flashMessage('Adresa byl úspěšně uložena', self::MSG_SUCCESS);
                 } else {
-                    if ($this->userManager->timestampChanged($userAddressId, $originalTimestamp)) {
+                    if ($this->userAddressManager->timestampChanged($userAddressId, $originalTimestamp)) {
                         $this->flashMessage('Došlo ke konfliktu. Adresa byl změněna jiným uživatelem. ', self::MSG_ERROR);
                     } else {
                         // nedošlo k žádé změně polí
@@ -327,7 +327,7 @@ final class UserPresenter extends BasePresenter
                     $this->userAddressId = strval($userAddressId);
                     // znovu vygenerovat formular
                     $this->removeComponent($form);
-                    $this->redrawControl('headerSnippet');
+                    $this->redrawControl('userAddressHeaderSnippet');
                     // prekreslit snippet odpovidajici formulari
                     $this->redrawControl(str_replace('Form', 'Snippet', $form->getName()));
                     $this->actionEdit(strval($userAddressId));

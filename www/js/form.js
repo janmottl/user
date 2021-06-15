@@ -1556,7 +1556,7 @@ function baseControlsInit(areaSelector) {
 
 $('body').on('click', 'a.edit', function () {
     // prepnuti do editacniho modu spolecne s downloadem snippetu
-    let activeTab = $('.nav-pills:visible .active > a').attr('href').substring(1);
+    let activeTab = $(this).closest('div.tab-pane').attr('id');
     let snippet = activeTab.substring('frm-group-'.length) + 'Snippet';
     $.nette.ajax({
         url: reloadSnippetAutocompleteSource,
@@ -1607,8 +1607,6 @@ $('body').on('click', '.saveButton', function () {
         $("#confirmDialog").off( "stop", stopEventFunction).off( "continue", continueEventFunction);
 
         // ukonceni editacniho modu bez ulozeni
-        var activeTab = $('.nav-pills:visible .active > a').attr('href').substring(1);
-        var snippet = activeTab.substring('frm-group-'.length) + 'Snippet';
         $.nette.ajax({
             url: reloadSnippetAutocompleteSource,
             data: {
@@ -1620,6 +1618,9 @@ $('body').on('click', '.saveButton', function () {
             }
         });
     };
+
+    let activeTab = $(this).closest('div.tab-pane').attr('id');
+    let snippet = activeTab.substring('frm-group-'.length) + 'Snippet';
 
     // do zobrazovaciho modu
     if (!inputsChanged(true)) {
