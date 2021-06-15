@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c8061d65-a281-451d-9628-fc13d0242d25" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Presenters/templates/User/gridTemplate.latte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Presenters/UserPresenter.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Presenters/UserPresenter.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sql/data_sample_user.sql" beforeDir="false" afterPath="$PROJECT_DIR$/sql/data_sample_user.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/48234e75-40cf-4e92-8952-d8f1405e577a.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/48234e75-40cf-4e92-8952-d8f1405e577a.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Presenters/templates/User/edit.latte" beforeDir="false" afterPath="$PROJECT_DIR$/app/Presenters/templates/User/edit.latte" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -120,7 +120,8 @@
       <updated>1623565710836</updated>
       <workItem from="1623565714422" duration="1624000" />
       <workItem from="1623567371067" duration="24868000" />
-      <workItem from="1623653561339" duration="18191000" />
+      <workItem from="1623653561339" duration="18212000" />
+      <workItem from="1623734381939" duration="408000" />
     </task>
     <task id="LOCAL-00001" summary="zacatek">
       <created>1623659120989</created>
@@ -164,7 +165,21 @@
       <option name="project" value="LOCAL" />
       <updated>1623686463030</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Adresy">
+      <created>1623687198469</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1623687198469</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Adresy">
+      <created>1623687205263</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1623687205263</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -180,6 +195,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />

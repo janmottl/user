@@ -20,10 +20,12 @@
         </div>
     </div>
 
-    <div class="btn-group" role="group">
-        <a href="javascript:void(0)" class="newUserAddress btn btn-sm btn-default" data-toggle="tooltip" title="Přidat novou adresu"><i class="fa fa-plus-square" aria-hidden="true"></i> Nová adresa</a>
-    </div>
-    {control userAddressesDatagrid}
+    {if !$isNew}
+        <div class="btn-group" role="group">
+            <a href="javascript:void(0)" class="newUserAddress btn btn-sm btn-default" data-toggle="tooltip" title="Přidat novou adresu"><i class="fa fa-plus-square" aria-hidden="true"></i> Nová adresa</a>
+        </div>
+        {control userAddressesDatagrid}
+    {/if}
 {/block}
 
 {define tabContentHeader}
@@ -234,7 +236,7 @@
             });
         */
         {if !$isNew}
-            setReadOnlyMode('body');
+            setReadOnlyMode('div#frm-group-user');
         {else}
             adjustGUIEditMode('div#frm-group-user');
             // userControlsInit('div#frm-group-user');
