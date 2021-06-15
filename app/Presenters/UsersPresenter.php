@@ -39,7 +39,7 @@ final class UsersPresenter extends BasePresenter
     /**
      *
      */
-    public function renderUsers() {
+    public function renderDefault() {
         if ($this->reloadGrid) {
             $this['usersDatagrid']->reload();
         }
