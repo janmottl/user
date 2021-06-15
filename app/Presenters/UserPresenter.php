@@ -78,7 +78,11 @@ final class UserPresenter extends BasePresenter
             // $this->mode = self::MODE_EDIT;
         }
 
-        $this->template->mode = $this->mode;
+        if (isset($this->mode)) {
+            $this->template->mode = $this->mode;
+        } else {
+            $this->template->mode = self::MODE_VIEW;
+        }
 
         if ($this->reloadGrid) {
             $this['userAddressesDatagrid']->reload();
@@ -330,7 +334,6 @@ final class UserPresenter extends BasePresenter
                     $this->redrawControl('userAddressHeaderSnippet');
                     // prekreslit snippet odpovidajici formulari
                     $this->redrawControl(str_replace('Form', 'Snippet', $form->getName()));
-                    $this->actionEdit(strval($userAddressId));
                 }
 
                 // grid reload

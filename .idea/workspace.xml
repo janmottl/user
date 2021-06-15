@@ -1,14 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c8061d65-a281-451d-9628-fc13d0242d25" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Model/UserAddressManager.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Model/UserAddressManager.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Presenters/UserPresenter.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Presenters/UserPresenter.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Presenters/templates/User/edit.latte" beforeDir="false" afterPath="$PROJECT_DIR$/app/Presenters/templates/User/edit.latte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/js/form.js" beforeDir="false" afterPath="$PROJECT_DIR$/www/js/form.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/js/userAddressForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/www/js/userAddressForm.js" afterDir="false" />
-    </list>
+    <list default="true" id="c8061d65-a281-451d-9628-fc13d0242d25" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -124,7 +117,7 @@
       <workItem from="1623565714422" duration="1624000" />
       <workItem from="1623567371067" duration="24868000" />
       <workItem from="1623653561339" duration="18212000" />
-      <workItem from="1623734381939" duration="10456000" />
+      <workItem from="1623734381939" duration="10793000" />
     </task>
     <task id="LOCAL-00001" summary="zacatek">
       <created>1623659120989</created>
@@ -217,7 +210,14 @@
       <option name="project" value="LOCAL" />
       <updated>1623743578899</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Adresy">
+      <created>1623748111395</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1623748111395</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -239,6 +239,8 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="CHECK_NEW_TODO" value="false" />
     <MESSAGE value="zacatek" />
     <MESSAGE value="navrh API" />
     <MESSAGE value="Opravy" />

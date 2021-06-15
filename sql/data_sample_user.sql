@@ -15,5 +15,5 @@ VALUES
 
 INSERT INTO user_address (user_id, user_adresa, user_stat, user_obec_psc, user_obec_nazev)
 VALUES
-    (1, 'U potoka', '', '64100', 'Brno'),
-    (1, 'U rybníka', '', '64100', 'Brno');
+    (1, 'U potoka', '', '641 00', 'Brno'),
+    (1, 'U rybníka', '', '641 00', 'Brno');
