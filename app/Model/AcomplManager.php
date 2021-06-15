@@ -27,7 +27,25 @@ class AcomplManager extends DatabaseManager
     }
 
     /**
-     * Vyhleda seznam obci podle podretezce v parametru.
+     * Najde statu podle kodu
+     * @param string $kod
+     * @return string
+     */
+    public function getStatNazevByKod(string $kod) : string
+    {
+        $name = '';
+        if (!empty($kod) && ($kod != '*')) {
+            $query = "SELECT nazev 
+                        FROM acompl_stat_iso  
+                       WHERE kod = ?";
+            $result = $this->database->query($query, $kod)->fetch();
+            $name = $result ? $result['nazev'] : '';
+        }
+        return $name;
+    }
+
+    /**
+     * Vyhleda seznam statu podle podretezce v parametru.
      * @param string $searchString podretezec
      * @param string $acceptUnknown podretezec
      * @return array
@@ -57,7 +75,6 @@ class AcomplManager extends DatabaseManager
         return $result;
     }
 
-    /*
     public function statValidate($kod, $acceptUnknown)
     {
         $result = ['returns' => 'false', 'nazev' => ''];
@@ -76,7 +93,6 @@ class AcomplManager extends DatabaseManager
 
         return $result;
     }
-    */
 
     /**
      * Vyhleda seznam obci podle podretezce v parametru.

@@ -34,6 +34,8 @@ final class UserPresenter extends BasePresenter
     private bool $reloadGrid = false;
     /** @var string $userAddressId */
     private string $userAddressId = '';
+    /** @var string $userAddressStatName */
+    private string $userAddressStatName = '';
 
     public function __construct(Explorer $database, UserManager $userManager, UserAddressManager $userAddressManager, AcomplManager $acomplManager)
     {
@@ -75,7 +77,6 @@ final class UserPresenter extends BasePresenter
             if (empty($id) || (!empty($do) && strstr($do, 'userAddressesDatagrid'))) {
                 return;
             }
-            // $this->mode = self::MODE_EDIT;
         }
 
         if (isset($this->mode)) {
@@ -251,18 +252,23 @@ final class UserPresenter extends BasePresenter
         $this->sendResponse(new Responses\JsonResponse($response));
     }
 
-    /*
     public function handleStatValidate() {
         $response = $this->acomplManager->statValidate($this->getHttpRequest()->getQuery('kod'),
             $this->getHttpRequest()->getQuery('acceptUnknown'));
         $this->sendResponse(new Responses\JsonResponse($response));
     }
-    */
 
     public function handleObecAutocomplete() {
         $psc = str_replace(' ', '', $this->getHttpRequest()->getQuery('psc'));
         $response = $this->acomplManager->getObceAutocomplete($psc,$this->getHttpRequest()->getQuery('obec'));
         $this->sendResponse(new Responses\JsonResponse($response));
+    }
+
+    /**
+     * @return string
+     */
+    public function getStatName() : string {
+        return $this->userAddressStatName;
     }
 
     protected function createComponentUserAddressForm()
@@ -304,6 +310,7 @@ final class UserPresenter extends BasePresenter
                 $this->flashMessage('Adresa nebyla nalezena.', self::MSG_ERROR);
             } else {
                 $form->setDefaults($row);
+                $this->userAddressStatName = $this->acomplManager->getStatNazevByKod($row[UserAddressManager::COLUMN_USER_STAT]);
             }
         }
 
@@ -321,7 +328,7 @@ final class UserPresenter extends BasePresenter
                     if ($this->userAddressManager->timestampChanged($userAddressId, $originalTimestamp)) {
                         $this->flashMessage('Došlo ke konfliktu. Adresa byl změněna jiným uživatelem. ', self::MSG_ERROR);
                     } else {
-                        // nedošlo k žádé změně polí
+                        // nedošlo k žádné změně polí
                         $this->flashMessage('Nebyla provedena žádná změna.', self::MSG_SUCCESS);
                     }
                 }

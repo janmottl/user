@@ -413,9 +413,11 @@ function checkChangedState(idAttr) {
             }
         }
 
+        /*
         if (message !== '') {
             dialogAlert(null, title, message, 400);
         }
+         */
     }
 }
 

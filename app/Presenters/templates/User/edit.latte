@@ -175,7 +175,7 @@
                                                 <div class="input-group">
                                                     {input user_stat, class => "form-control stat acomplIcon", data-tooltip-stat => "addr"}
                                                     {label user_stat/}
-                                                    <span class="input-group-addon stat-nazev-addon"></span>
+                                                    <span class="input-group-addon stat-nazev-addon">{$presenter->getStatName()}</span>
                                                     <span class="input-group-addon acomplIcon"><i class="fa fa-chevron-down" aria-hidden="true"></i></span>
                                                 </div>
                                             </div>
@@ -219,7 +219,7 @@
         var reloadSnippetAutocompleteSource = {link reloadSnippet!};
         var reloadUserAddressSource = {link reloadUserAddress!};
         var statAutocompleteSource = {link statAutocomplete!};
-        var statValidateSource = null {*link statValidate!*};
+        var statValidateSource = {link statValidate!};
         var obecAutocompleteSource = {link obecAutocomplete!};
 
         // Počáteční inicializace.

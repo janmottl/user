@@ -14,6 +14,7 @@ class UserAddressManager extends DatabaseManager
         TABLE_NAME = 'user_address',
         COLUMN_ID = 'user_address_id',
         COLUMN_USER_ID = 'user_id',
+        COLUMN_USER_STAT = 'user_stat',
         COLUMN_UPDATED_TIMESTAMP = 'updated_timestamp';
     /**
      * @param string $userId
