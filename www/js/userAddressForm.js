@@ -1,8 +1,5 @@
 $(document).on( "click", ".newUserAddress", function() {
     $('.tooltip').hide();
-    $("#userAddressDialog").modal({backdrop: "static", keyboard: true});
-
-    adjustGUIEditMode('div#frm-group-userAddress');
 
     $.nette.ajax({
         url: reloadUserAddressSource,
@@ -15,6 +12,8 @@ $(document).on( "click", ".newUserAddress", function() {
             id: ""
         }
     }).done(function() {
+        $("#userAddressDialog").modal({backdrop: "static", keyboard: true});
+        adjustGUIEditMode('div#frm-group-userAddress');
         setTimeout(function() {
             $('[name="name"]').focus();
         });
@@ -24,9 +23,6 @@ $(document).on( "click", ".newUserAddress", function() {
 
 $(document).on( "click", ".editUserAddress", function() {
     var id = $(this).closest('tr').attr('data-id');
-    // otevre dialog
-    $("#userAddressDialog").modal({backdrop: "static", keyboard: true});
-    adjustGUIEditMode('div#frm-group-userAddress');
 
     $.nette.ajax({
         url: reloadUserAddressSource,
@@ -39,6 +35,10 @@ $(document).on( "click", ".editUserAddress", function() {
             id: id,
         }
     }).done(function (msg) {
+        // otevre dialog
+        $("#userAddressDialog").modal({backdrop: "static", keyboard: true});
+        adjustGUIEditMode('div#frm-group-userAddress');
+
         setTimeout(function() {
             $('[name="name"]').focus();
         });

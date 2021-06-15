@@ -12,6 +12,7 @@ use Nette\Application\UI\Form;
 use Nette\Application\Responses;
 use Nette\Database\Explorer;
 use Nette\Database\UniqueConstraintViolationException;
+use Tracy\Debugger;
 use Ublaboo\DataGrid\DataGrid;
 use Ublaboo\NetteDatabaseDataSource\NetteDatabaseDataSource;
 
@@ -32,7 +33,7 @@ final class UserPresenter extends BasePresenter
     /** @var bool $reloadGrid */
     private bool $reloadGrid = false;
     /** @var string $userAddressId */
-    private string $userAddressId;
+    private string $userAddressId = '';
 
     public function __construct(Explorer $database, UserManager $userManager, UserAddressManager $userAddressManager, AcomplManager $acomplManager)
     {
@@ -294,6 +295,14 @@ final class UserPresenter extends BasePresenter
         $form->addSubmit('save', 'Uložit')
             ->setHtmlAttribute('class', 'save');
 
+        if (!empty($this->userAddressId)) {
+            if (!($row = $this->userAddressManager->getUserAddress($this->userAddressId))) {
+                $this->flashMessage('Adresa nebyla nalezena.', self::MSG_ERROR);
+            } else {
+                $form->setDefaults($row);
+            }
+        }
+
         $form->onSuccess[] = function (Nette\Forms\Form $form, Nette\Utils\ArrayHash $values) {
             try {
                 $isNew = empty($values[UserAddressManager::COLUMN_ID]);
@@ -315,6 +324,7 @@ final class UserPresenter extends BasePresenter
 
                 if ($this->isAjax()) {
                     $this->mode = self::MODE_VIEW;
+                    $this->userAddressId = strval($userAddressId);
                     // znovu vygenerovat formular
                     $this->removeComponent($form);
                     $this->redrawControl('headerSnippet');

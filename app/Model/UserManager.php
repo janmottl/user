@@ -20,6 +20,7 @@ class UserManager extends DatabaseManager
     public function getUser(string $userId) : ActiveRow
     {
         return $this->database->table(self::TABLE_NAME)
+            ->select('*')
             ->where(self::COLUMN_ID, $userId)
             ->fetch();
     }

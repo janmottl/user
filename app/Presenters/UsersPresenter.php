@@ -19,6 +19,9 @@ final class UsersPresenter extends BasePresenter
     public $database;
 
 
+    /**
+     * @throws \Ublaboo\DataGrid\Exception\DataGridException
+     */
     public function createComponentUsersDatagrid($name) {
         /**
          * @type DataGrid

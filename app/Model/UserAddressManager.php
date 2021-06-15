@@ -19,10 +19,11 @@ class UserAddressManager extends DatabaseManager
      * @param string $userId
      * @return false|ActiveRow
      */
-    public function getUserAddress(string $userId) : ActiveRow
+    public function getUserAddress(string $userAddressId) : ActiveRow
     {
         return $this->database->table(self::TABLE_NAME)
-            ->where(self::COLUMN_ID, $userId)
+            ->select('*')
+            ->where(self::COLUMN_ID, $userAddressId)
             ->fetch();
     }
 
