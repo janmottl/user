@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Presenters;
 
+use App\Model\UserInfo;
 use PDOException;
 use Nette;
 use App\Model\UserManager;
@@ -28,6 +29,8 @@ final class UserPresenter extends BasePresenter
     private UserAddressManager $userAddressManager;
     /** @var AcomplManager */
     private AcomplManager $acomplManager;
+    /** @var UserInfo */
+    private UserInfo $userInfo;
 
     use MyDatagrid;
     /** @var bool $reloadGrid */
@@ -37,13 +40,25 @@ final class UserPresenter extends BasePresenter
     /** @var string $userAddressStatName */
     private string $userAddressStatName = '';
 
-    public function __construct(Explorer $database, UserManager $userManager, UserAddressManager $userAddressManager, AcomplManager $acomplManager)
+    public function __construct(Explorer $database, UserManager $userManager, UserAddressManager $userAddressManager,
+                                AcomplManager $acomplManager, UserInfo $userInfo)
     {
         parent::__construct();
         $this->database = $database;
         $this->userManager = $userManager;
         $this->acomplManager = $acomplManager;
         $this->userAddressManager = $userAddressManager;
+        $this->userInfo = $userInfo;
+    }
+
+    /**
+     * @param string|null
+     */
+    public function actionData(string $id = null)
+    {
+        if (!empty($id)) {
+            $this->sendJson($this->userInfo->getUserDetail($id));
+        }
     }
 
     /**

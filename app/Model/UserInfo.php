@@ -5,35 +5,33 @@ declare(strict_types=1);
 namespace App\Model;
 
 use Nette;
-use Nette\Utils\Json;
 
 
 class UserInfo extends DatabaseManager
 {
     /**
-     * @return string $users
+     * @return array
      */
-    public function getAllUsers() : string
+    public function getAllUsers() : array
     {
-        $users = null;
+        $result = [];
 
-        $fetch = $this->database->table(UserManager::TABLE_NAME)
+        $selection = $this->database->table(UserManager::TABLE_NAME)
             ->select('user_id, name, surname, email')
-            ->order(UserManager::COLUMN_ID.' ASC')
-            ->fetch();
+            ->order(UserManager::COLUMN_ID.' ASC');
 
-        if ($users !== false) {
-            $users = Json::encode($fetch, Json::PRETTY | Json::ESCAPE_UNICODE);
+        foreach ($selection as $item) {
+            $result[$item[UserManager::COLUMN_ID]] = $item->toArray();
         }
-        return  $users;
+        return $result;
     }
 
     /**
-     * @var string $userId
-     * @return string $userDetail
+     * @param string $userId
+     * @return array
      */
-    public function getUserDetail(string $userId) : string {
-        $userDetail = '';
+    public function getUserDetail(string $userId) : array {
+        $userDetail = [];
 
         $userFetch = $this->database->table(UserManager::TABLE_NAME)
             ->select('user_id, email, name, surname, phone, mobile')
@@ -41,16 +39,18 @@ class UserInfo extends DatabaseManager
             ->fetch();
 
         $userAddressFetch = $this->database->table(UserAddressManager::TABLE_NAME)
-            ->select('*')
+            ->select('user_address_id, user_adresa, user_stat, user_obec_psc, user_obec_nazev')
             ->where(UserAddressManager::COLUMN_USER_ID, $userId)
             ->order(UserAddressManager::COLUMN_ID.' ASC')
-            ->fetch();
+            ->fetchAll();
 
         if (($userFetch !== false) && ($userAddressFetch !== false)) {
-            $user = $userFetch->toArray();
-            $userAddress = $userAddressFetch->toArray();
-            $user['address'] = $userAddress;
-            $userDetail = Json::encode($user, Json::PRETTY | Json::ESCAPE_UNICODE);
+            $userDetail = $userFetch->toArray();
+            $addresses = [];
+            foreach ($userAddressFetch as $item) {
+                $addresses[$item[UserAddressManager::COLUMN_ID]] = $item->toArray();
+            }
+            $userDetail['address'] = $addresses;
         }
 
         return $userDetail;

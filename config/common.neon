@@ -30,3 +30,4 @@ services:
 	- App\Model\UserManager
 	- App\Model\UserAddressManager
 	- App\Model\AcomplManager
+	- App\Model\UserInfo

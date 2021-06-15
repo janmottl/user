@@ -10,6 +10,7 @@ use Ublaboo\DataGrid\DataGrid;
 use Ublaboo\NetteDatabaseDataSource\NetteDatabaseDataSource;
 
 use App\Model\UserManager;
+use App\Model\UserInfo;
 
 
 final class UsersPresenter extends BasePresenter
@@ -18,6 +19,10 @@ final class UsersPresenter extends BasePresenter
      * @var UserManager
      */
     private UserManager $userManager;
+    /**
+     * @var UserInfo
+     */
+    private UserInfo $userInfo;
 
     use MyDatagrid;
 
@@ -28,11 +33,12 @@ final class UsersPresenter extends BasePresenter
     /** @var bool $reloadGrid */
     private bool $reloadGrid = false;
 
-    public function __construct(Explorer $database, UserManager $userManager)
+    public function __construct(Explorer $database, UserManager $userManager, UserInfo $userInfo)
     {
         parent::__construct();
         $this->database = $database;
         $this->userManager = $userManager;
+        $this->userInfo = $userInfo;
     }
 
     /**
@@ -42,6 +48,10 @@ final class UsersPresenter extends BasePresenter
         if ($this->reloadGrid) {
             $this['usersDatagrid']->reload();
         }
+    }
+
+    public function actionData() {
+        $this->sendJson($this->userInfo->getAllUsers());
     }
 
     /**
@@ -94,26 +104,6 @@ final class UsersPresenter extends BasePresenter
             ->setFilterText();
 
         $grid->addColumnLink('manipulate', 'Akce');
-
-        /**
-         * Big inline editing
-         */
-
-        /**
-         * Filters
-         */
-
-        /**
-         * Actions
-         */
-
-        /**
-         * Group action
-         */
-
-        /**
-         * Columns summary
-         */
 
         /**
          * Localization
