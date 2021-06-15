@@ -16,7 +16,7 @@ final class UsersPresenter extends BasePresenter
      * @var Nette\Database\Context
      * @inject
      */
-    public $db;
+    public $database;
 
 
     public function createComponentUsersDatagrid($name) {
@@ -29,7 +29,7 @@ final class UsersPresenter extends BasePresenter
 
         $grid->setStrictSessionFilterValues(FALSE);
         $query = "SELECT *, 1 as edit  FROM user";
-        $datasource = new NetteDatabaseDataSource($this->db, $query);
+        $datasource = new NetteDatabaseDataSource($this->database, $query);
         $grid->setPrimaryKey('user_id');
         $grid->setDataSource($datasource);
         $grid->setColumnsHideable();

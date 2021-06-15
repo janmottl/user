@@ -10,6 +10,7 @@ use Nette;
 use App\Model\UserManager;
 use Nette\Application\UI\Form;
 use Nette\Application\Responses;
+use Nette\Database\Explorer;
 use Nette\Database\UniqueConstraintViolationException;
 use Ublaboo\DataGrid\DataGrid;
 use Ublaboo\NetteDatabaseDataSource\NetteDatabaseDataSource;
@@ -17,29 +18,26 @@ use Ublaboo\NetteDatabaseDataSource\NetteDatabaseDataSource;
 
 final class UserPresenter extends BasePresenter
 {
+    /** @var Explorer $database */
+    private Explorer $database;
     /** @var UserManager */
     private UserManager $userManager;
     /** @var UserAddressManager */
     private UserAddressManager $userAddressManager;
     /** @var AcomplManager */
     private AcomplManager $acomplManager;
-    /** @var bool $reloadGrid */
-    private bool $reloadGrid = false;
 
     use MyDatagrid;
-    /**
-     * @var Nette\Database\Context
-     * @inject
-     */
-    public $db;
 
+    /** @var bool $reloadGrid */
+    private bool $reloadGrid = false;
     /** @var string $userAddressId */
-    protected string $userAddressId;
+    private string $userAddressId;
 
-
-    public function __construct(UserManager $userManager, UserAddressManager $userAddressManager, AcomplManager $acomplManager)
+    public function __construct(Explorer $database, UserManager $userManager, UserAddressManager $userAddressManager, AcomplManager $acomplManager)
     {
         parent::__construct();
+        $this->database = $database;
         $this->userManager = $userManager;
         $this->acomplManager = $acomplManager;
         $this->userAddressManager = $userAddressManager;
@@ -173,7 +171,7 @@ final class UserPresenter extends BasePresenter
         $userId = $this->getParameter('id');
         $grid->setStrictSessionFilterValues(FALSE);
         $query = "SELECT *, 1 as edit  FROM user_address WHERE user_id=?";
-        $datasource = new NetteDatabaseDataSource($this->db, $query, [$userId]);
+        $datasource = new NetteDatabaseDataSource($this->database, $query, [$userId]);
         $grid->setPrimaryKey('user_address_id');
         $grid->setDataSource($datasource);
         $grid->setColumnsHideable();
