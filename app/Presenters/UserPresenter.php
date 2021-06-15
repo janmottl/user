@@ -23,6 +23,8 @@ final class UserPresenter extends BasePresenter
     private UserAddressManager $userAddressManager;
     /** @var AcomplManager */
     private AcomplManager $acomplManager;
+    /** @var bool $reloadGrid */
+    private bool $reloadGrid = false;
 
     use MyDatagrid;
     /**
@@ -74,10 +76,14 @@ final class UserPresenter extends BasePresenter
             if (empty($id) || (!empty($do) && strstr($do, 'userAddressesDatagrid'))) {
                 return;
             }
-            $this->mode = self::MODE_EDIT;
+            // $this->mode = self::MODE_EDIT;
         }
 
         $this->template->mode = $this->mode;
+
+        if ($this->reloadGrid) {
+            $this['userAddressesDatagrid']->reload();
+        }
     }
 
     protected function createComponentUserForm()
@@ -115,8 +121,9 @@ final class UserPresenter extends BasePresenter
             ->setRequired()
             ->addRule(Form::MIN_LENGTH, 'Heslo je příliš krátké', 5);
 
+        $form->addSubmit('save', 'Uložit')
+            ->setHtmlAttribute('class', 'save');
 
-        // Funkce se vykonaná při úspěšném odeslání formuláře a zpracuje zadané hodnoty.
         $form->onSuccess[] = function (Nette\Forms\Form $form, Nette\Utils\ArrayHash $values) {
             try {
                 $isNew = empty($values[UserManager::COLUMN_ID]);
@@ -286,37 +293,42 @@ final class UserPresenter extends BasePresenter
             ->setRequired(false);
             //->addRule('App\Utilities\MyValidators::statValidator', 'Neplatný kód státu');
 
-        // Funkce se vykonaná při úspěšném odeslání formuláře a zpracuje zadané hodnoty.
+        $form->addSubmit('save', 'Uložit')
+            ->setHtmlAttribute('class', 'save');
+
         $form->onSuccess[] = function (Nette\Forms\Form $form, Nette\Utils\ArrayHash $values) {
             try {
-                $isNew = empty($values[UserManager::COLUMN_ID]);
-                $userId = $values[UserManager::COLUMN_ID];
-                $originalTimestamp = $values[UserManager::COLUMN_UPDATED_TIMESTAMP];
+                $isNew = empty($values[UserAddressManager::COLUMN_ID]);
+                $userId = $this->getParameter('id');
+                $values[UserManager::COLUMN_ID] = $userId;
+                $userAddressId = $values[UserAddressManager::COLUMN_ID];
+                $originalTimestamp = $values[UserAddressManager::COLUMN_UPDATED_TIMESTAMP];
 
-                if ($this->userManager->saveUser($values, $userId) > 0) {
-                    $this->flashMessage('Uživatel byl úspěšně uložen.', self::MSG_SUCCESS);
+                if ($this->userAddressManager->saveUserAddress($values, $userAddressId) > 0) {
+                    $this->flashMessage('Adresa byl úspěšně uložena', self::MSG_SUCCESS);
                 } else {
-                    if ($this->userManager->timestampChanged($userId, $originalTimestamp)) {
-                        $this->flashMessage('Došlo ke konfliktu. Uživatel byl změněn jiným uživatelem. ', self::MSG_ERROR);
+                    if ($this->userManager->timestampChanged($userAddressId, $originalTimestamp)) {
+                        $this->flashMessage('Došlo ke konfliktu. Adresa byl změněna jiným uživatelem. ', self::MSG_ERROR);
                     } else {
                         // nedošlo k žádé změně polí
                         $this->flashMessage('Nebyla provedena žádná změna.', self::MSG_SUCCESS);
                     }
                 }
 
-                if ($this->isAjax() && !$isNew) {
+                if ($this->isAjax()) {
                     $this->mode = self::MODE_VIEW;
                     // znovu vygenerovat formular
                     $this->removeComponent($form);
                     $this->redrawControl('headerSnippet');
                     // prekreslit snippet odpovidajici formulari
                     $this->redrawControl(str_replace('Form', 'Snippet', $form->getName()));
-                    $this->actionEdit(strval($userId));
-                } else {
-                    $this->redirect('User:Edit', $userId);
+                    $this->actionEdit(strval($userAddressId));
                 }
+
+                // grid reload
+                $this->reloadGrid = true;
             } catch (UniqueConstraintViolationException $e) {
-                $this->flashMessage('Uživatel již existuje.', self::MSG_ERROR);
+                $this->flashMessage('Adresa již existuje.', self::MSG_ERROR);
             }
         };
         return $form;

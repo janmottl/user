@@ -1571,14 +1571,12 @@ $('body').on('click', 'a.edit', function () {
 });
 
 
-function saveButtonClicked () {
+function saveButtonClicked (areaSelector) {
     //
     // zpoždění aby doběhly asynchronní kontroly
     //
     setTimeout(function () {
-        let activeTabDiv = $('div.tab-pane.active.in:visible');
-        // Je treba enablovat selecty, aby nas nevyhodila validace
-        $(activeTabDiv).find('.enableOnSave').attr('disabled', false);
+        $(areaSelector).find('.enableOnSave').attr('disabled', false);
 
         // osetreni poli s tinyMCE
         if ((typeof(tinyMCE) != "undefined") && tinyMCE.activeEditor) {
@@ -1587,11 +1585,7 @@ function saveButtonClicked () {
         }
 
         // stisknuti skryteho tlacitka
-        if (activeTabDiv.length > 0) {
-            $(activeTabDiv).find("input[name='save']").first().click();
-        } else {
-            $("input[name='save']").first().click();
-        }
+        $(areaSelector).find("input[name='save']").first().click();
     }, 100);
 }
 
@@ -1602,7 +1596,7 @@ $('body').on('click', '.saveButton', function () {
         let rect = this.getBoundingClientRect();
         $('.processing-spinner').css('left', rect.left).css('top', rect.top).removeClass('hidden');
 
-        saveButtonClicked();
+        saveButtonClicked($(this).closest('div.tab-pane'));
     }
 
 }).on('click', 'a.storno', function () {

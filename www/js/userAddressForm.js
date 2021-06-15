@@ -16,7 +16,7 @@ $(document).on( "click", ".newUserAddress", function() {
         }
     }).done(function() {
         setTimeout(function() {
-            $('[name="k_osoba"]').focus();
+            $('[name="name"]').focus();
         });
     });
 });
@@ -24,74 +24,23 @@ $(document).on( "click", ".newUserAddress", function() {
 
 $(document).on( "click", ".editUserAddress", function() {
     var id = $(this).closest('tr').attr('data-id');
-
-    // otevre dialog s pridanim prevozu
+    // otevre dialog
     $("#userAddressDialog").modal({backdrop: "static", keyboard: true});
+    adjustGUIEditMode('div#frm-group-userAddress');
 
-    if (window.location.href.indexOf('admin') !== -1) {
-        // editacni mod pouze pri administraci
-        adjustGUIEditMode('div#frm-group-userAddress');
-
-        $.nette.ajax({
-            url: reloadUserAddressSource,
-            data: {
-                snippet: "userAddressSnippet",
-                headerSnippet: "userAddressHeaderSnippet",
-                clicked: "editovat",
-                parentDivId: "frm-group-userAddress-modcon",
-                adjustGUI: true,
-                id: id,
-            }
-        }).done(function (msg) {
-            var kontaktEl = $("#frm-group-userAddress").find('input[name="kontakt_kod"]');
-            if (kontaktEl.length > 0) {
-                var text = $(kontaktEl).attr('data-alert-info');
-                if (text && (text !== '')) {
-                    var formGroup = $(kontaktEl).closest('div.form-group');
-                    $(formGroup).after('<div class="form-group"><div class="alert alert-info col-sm-12 xsma" role="alert">'+text+'</div></div>');
-                }
-            }
-
-            setTimeout(function() {
-                $('[name="k_osoba"]').focus();
-            });
-        });
-    } else {
-        $.nette.ajax({
-            url: reloadUserAddressSource,
-            data: {
-                snippet: "userAddressSnippet",
-                headerSnippet: "userAddressHeaderSnippet",
-                clicked: "editovat",
-                parentDivId: "frm-group-userAddress-modcon",
-                adjustGUI: false,
-                id: id,
-            }
-        });
-    }
-});
-
-
-/*
-$('.edit').prop('onclick',null).off('click').click(function () {
-    var id = $('input#id').val();
-
-    // prepnuti do editacniho modu spolecne s downloadem snippetu
     $.nette.ajax({
-        url: reloaduserAddressSnippetSource,
+        url: reloadUserAddressSource,
         data: {
             snippet: "userAddressSnippet",
             headerSnippet: "userAddressHeaderSnippet",
             clicked: "editovat",
             parentDivId: "frm-group-userAddress-modcon",
             adjustGUI: true,
-            id: id
+            id: id,
         }
+    }).done(function (msg) {
+        setTimeout(function() {
+            $('[name="name"]').focus();
+        });
     });
 });
-
-$('.storno').prop('onclick',null).off('click').click(function () {
-    $('div#snippet--userAddressSnippet').empty();
-});
-
-*/
