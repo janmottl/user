@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c8061d65-a281-451d-9628-fc13d0242d25" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/sql/user-database-dump.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Presenters/templates/User/gridTemplate.latte" beforeDir="false" afterPath="$PROJECT_DIR$/app/Presenters/templates/User/gridTemplate.latte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql/data_sample_user.sql" beforeDir="false" afterPath="$PROJECT_DIR$/sql/data_sample_user.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,7 +70,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/www/js" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/sql" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -122,7 +123,7 @@
       <workItem from="1623653561339" duration="18212000" />
       <workItem from="1623734381939" duration="10793000" />
       <workItem from="1623757887694" duration="13763000" />
-      <workItem from="1623843587364" duration="1468000" />
+      <workItem from="1623843587364" duration="3491000" />
     </task>
     <task id="LOCAL-00001" summary="zacatek">
       <created>1623659120989</created>
@@ -264,7 +265,14 @@
       <option name="project" value="LOCAL" />
       <updated>1623769299379</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="Lokalizace adres z Gridu">
+      <created>1623845180879</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1623845180879</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -295,6 +303,7 @@
     <MESSAGE value="Adresy" />
     <MESSAGE value="Delete user" />
     <MESSAGE value="Upravy" />
-    <option name="LAST_COMMIT_MESSAGE" value="Upravy" />
+    <MESSAGE value="Lokalizace adres z Gridu" />
+    <option name="LAST_COMMIT_MESSAGE" value="Lokalizace adres z Gridu" />
   </component>
 </project>
