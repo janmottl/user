@@ -5,6 +5,32 @@
        title="Editovat adresu uživatele"
        class="editUserAddress"
        data-toggle="tooltip"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+
+    {var $refLcate = '';}
+    {if !empty($item['user_adresa'])}
+        {if !empty($refLcate)}
+            {var $refLcate = $refLcate.' ';}
+        {/if}
+        {var $refLcate = $refLcate.$item['user_adresa'];}
+    {/if}
+    {if !empty($item['user_obec_psc'])}
+        {if !empty($refLcate)}
+            {var $refLcate = $refLcate.' ';}
+        {/if}
+        {var $refLcate = $refLcate.$item['user_obec_psc'];}
+    {/if}
+    {if !empty($item['user_obec_nazev'])}
+        {if !empty($refLcate)}
+            {var $refLcate = $refLcate.' ';}
+        {/if}
+        {var $refLcate = $refLcate.$item['user_obec_nazev'];}
+    {/if}
+    {if !empty($refLcate)}
+        {var $refLcate = 'https://www.google.com/maps/search/?api=1&query='.$refLcate;}
+        <a href={$refLcate} target="_tab"
+          data-toggle="tooltip" title="" data-original-title="Najít na mapě"><i class="fa fa-map-marker" aria-hidden="true"></i></a>
+    {/if}
+
     <a href="javascript:void(0)" tabindex="-1"
        title="Smazat adresu uživatele"
        class="deleteUserAddress"
