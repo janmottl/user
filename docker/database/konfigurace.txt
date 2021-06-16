@@ -1,0 +1,39 @@
+
+
+sudo docker network create my-network
+
+sudo docker pull mariadb/server:10.1
+
+sudo docker run --name mariadb \
+    --net my-network \
+    -e MYSQL_ROOT_PASSWORD=j01030103k \
+    -d --restart unless-stopped \
+    -v /data/database/database:/var/lib/mysql \
+    -e TZ=Europe/Prague \
+    mariadb/server:10.1
+
+/* phpmyadmin */
+
+sudo docker run --name myadmin \
+    --net my-network \
+    -d  --restart unless-stopped \
+    --link mariadb:db\
+    -p 8000:80  \
+    -e VIRTUAL_HOST=concordia.myadmin \
+    -e TZ=Europe/Prague \
+    phpmyadmin/phpmyadmin
+
+sudo docker exec -it myadmin /bin/bash
+/*
+    apt-get update
+    apt-get install vim nano
+*/
+
+cd /usr/local/etc/php/
+cp php.ini-production php.ini
+nano php.ini
+
+Modify it upload_max_filesize=128M
+         post_max_size=128M
+         max_execution_time=1000
+exit
