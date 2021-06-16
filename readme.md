@@ -1,46 +1,23 @@
-Nette Web Project
-=================
+#Instalace
+- ve složce /docker jsou scripty pro vytvoření databáze a webového serveru
+- ve složce /sql jsou scripty pro vytvořebí tabulek a zkušebních dat. Dále je tam kompletní databázový dump
 
-This is a simple, skeleton application using the [Nette](https://nette.org). This is meant to
-be used as a starting point for your new projects.
+#Formuláře
+- formuláře jsou řešeny prostřednictvím Nette snippetů
+- validace se provádí nejdŕíve v prohližeči s pomocí netteForms.min.js. Validační chyby se zobrazují přímo u pole.
+- povinná pole mají žluté pozadí  
+- pro česká PSČ je použita input mask
+- státy, obce a PSČ jsou opatřeny našeptávači. Našeptávače PSČ a obce jsou vázané, našeptávají se pouze obce daného PSČ
+- číselník PSČ a obcí je převzatý od České pośty s upravenými názvy některých obcí (opravena nesystematičmost v Praze)
+- číselník statů je dle ISO  
+- u adresy je add-on pro lokalizaci v Google Maps
 
-[Nette](https://nette.org) is a popular tool for PHP web development.
-It is designed to be the most usable and friendliest as possible. It focuses
-on security and performance and is definitely one of the safest PHP frameworks.
+#Gridy
+- pro grid uživatelů a adres uživatele je použit Contributte Datagrid (dříve Ublabloo Datagrid)
+- doplněna tlačítka pro editaci, smazání a lokalizaci
 
-If you like Nette, **[please make a donation now](https://nette.org/donate)**. Thank you!
-
-
-Requirements
-------------
-
-- Web Project for Nette 3.1 requires PHP 7.2
-
-
-Installation
-------------
-
-The best way to install Web Project is using Composer. If you don't have Composer yet,
-download it following [the instructions](https://doc.nette.org/composer). Then use command:
-
-	composer create-project nette/web-project path/to/install
-	cd path/to/install
-
-
-Make directories `temp/` and `log/` writable.
-
-
-Web Server Setup
-----------------
-
-The simplest way to get started is to start the built-in PHP server in the root directory of your project:
-
-	php -S localhost:8000 -t www
-
-Then visit `http://localhost:8000` in your browser to see the welcome page.
-
-For Apache or Nginx, setup a virtual host to point to the `www/` directory of the project and you
-should be ready to go.
-
-**It is CRITICAL that whole `app/`, `config/`, `log/` and `temp/` directories are not accessible directly
-via a web browser. See [security warning](https://nette.org/security-warning).**
+#API json
+- implementováno v /app/Model/UserInfo
+- metody jsou zpublikované přes http rozhraní  
+- výstup všech uživatelů - http://domain/users/data
+- detail uživatele - napŕ. http://domain/user/data/1
