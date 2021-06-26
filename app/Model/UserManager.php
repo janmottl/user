@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Model;
 
 use Nette\Database\Table\ActiveRow;
+use Nette\Security\Passwords;
 use Nette\Utils\ArrayHash;
 
 class UserManager extends DatabaseManager
@@ -12,6 +13,7 @@ class UserManager extends DatabaseManager
     const
         TABLE_NAME = 'user',
         COLUMN_ID = 'user_id',
+        COLUMN_PASSWORD = 'password',
         COLUMN_UPDATED_TIMESTAMP = 'updated_timestamp';
     /**
      * @param string $userId
@@ -43,6 +45,11 @@ class UserManager extends DatabaseManager
             unset($user[self::COLUMN_ID]);
             $originalTimestamp = $user[self::COLUMN_UPDATED_TIMESTAMP];
             unset($user[self::COLUMN_UPDATED_TIMESTAMP]);
+
+            if (isset($user[self::COLUMN_PASSWORD])) {
+                $passwordObj = new Passwords;
+                $user[self::COLUMN_PASSWORD] = $passwordObj->hash($user[self::COLUMN_PASSWORD]);
+            }
             $numUpdated = $this->database->table(self::TABLE_NAME)
                 ->where(self::COLUMN_ID, $userId)
                 ->where(self::COLUMN_UPDATED_TIMESTAMP, $originalTimestamp)

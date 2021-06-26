@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="c8061d65-a281-451d-9628-fc13d0242d25" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/readme.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Model/UserManager.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Model/UserManager.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -122,7 +122,9 @@
       <workItem from="1623653561339" duration="18212000" />
       <workItem from="1623734381939" duration="10793000" />
       <workItem from="1623757887694" duration="13763000" />
-      <workItem from="1623843587364" duration="5374000" />
+      <workItem from="1623843587364" duration="5584000" />
+      <workItem from="1624109479207" duration="849000" />
+      <workItem from="1624695351999" duration="592000" />
     </task>
     <task id="LOCAL-00001" summary="zacatek">
       <created>1623659120989</created>
@@ -285,7 +287,14 @@
       <option name="project" value="LOCAL" />
       <updated>1623847314168</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="Readme">
+      <created>1623848973708</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1623848973708</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -319,6 +328,7 @@
     <MESSAGE value="Lokalizace adres z Gridu" />
     <MESSAGE value="Databaze" />
     <MESSAGE value="Docker" />
-    <option name="LAST_COMMIT_MESSAGE" value="Docker" />
+    <MESSAGE value="Readme" />
+    <option name="LAST_COMMIT_MESSAGE" value="Readme" />
   </component>
 </project>
