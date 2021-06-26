@@ -10,5 +10,3 @@ Za použití libovolného PHP frameworku vytvořte jednoduchou aplikaci na uklá
   - detail uživatele ve formátu json (nebude se vypisovat heslo uživatele).
 - Aplikaci průběžně verzujte v tomto repozitáři (chceme vidět vaše myšlenkové pochody).
 - Jakmile budete mít hotovo, tak vytvořte Merge request do master větve.
-
-V případě dotazů pište na email `petovsky@shean.cz`.
